@@ -1,0 +1,14 @@
+- name: mkdir
+  file: path=/etc/systemd/system/docker.service.d state=directory owner=root group=root mode=0755
+- name: proxy setting
+  template: src=proxyenv.conf dest=/etc/systemd/system/docker.service.d/proxy.conf owner=root group=root
+- name: mkdir
+  file: path=/etc/docker state=directory owner=root group=root mode=0755
+- name: daemon.json
+  template: src=daemon.json dest=/etc/docker/daemon.json owner=root group=docker mode=0640
+- name: user group
+  user: name={{ ansible_ssh_user }} groups=docker append=yes
+- name: reload daemon
+  systemd: daemon_reload=yes
+- name: service
+  service: name=docker state=restarted enabled=yes

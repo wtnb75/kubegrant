@@ -1,0 +1,2 @@
+- name: disable nano
+  command: update-alternatives --set editor /usr/bin/vim.tiny

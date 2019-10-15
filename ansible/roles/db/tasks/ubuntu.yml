@@ -1,0 +1,2 @@
+- name: package
+  apt: name=mysql-server update_cache=yes

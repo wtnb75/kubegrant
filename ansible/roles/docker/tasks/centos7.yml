@@ -1,0 +1,14 @@
+- name: prepare
+  yum:
+   name:
+    - yum-utils
+    - device-mapper-persistent-data
+    - lvm2
+- name: repo
+  command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+  args:
+    creates: /etc/yum.repos.d/docker-ce.repo
+- name: install
+  yum:
+    name:
+     - docker-ce-{{ docker_ce_version|default("19.03.2") }}

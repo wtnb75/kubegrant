@@ -1,0 +1,2 @@
+- name: proxy.conf
+  template: src=proxy.conf dest=/etc/proxy.conf

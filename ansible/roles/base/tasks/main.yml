@@ -1,0 +1,13 @@
+- include: proxyconf.yml
+- include: modprobe.yml
+- include: sysctl.yml
+#- include: iptables.yml
+#- include: swapoff.yml
+- include: package_apt.yml
+  when: ansible_distribution == "Ubuntu"
+- include: package_yum.yml
+  when: ansible_distribution == "CentOS"
+- include: vim_ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
+- include: storage_ubuntu.yml
+  when: ansible_distribution == "Ubuntu"

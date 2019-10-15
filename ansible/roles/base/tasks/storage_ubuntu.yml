@@ -1,0 +1,4 @@
+- name: mkdir
+  file: path={{ item }} state=directory owner=root group=root mode=0777
+  with_items:
+   - /data

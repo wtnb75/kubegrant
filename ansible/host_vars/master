@@ -1,0 +1,9 @@
+dbase_packages:
+  - dstat
+  - apt-transport-https
+  - curl
+  - ca-certificates
+  - software-properties-common
+  - sysstat
+  - jq
+  - jo

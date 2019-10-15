@@ -1,0 +1,22 @@
+- hosts: all
+  roles:
+   - {role: base, tags: [base]}
+  become: yes
+- hosts: k8s_master
+  roles:
+   - {role: iscsi, tags: [iscsi]}
+   - {role: docker, tags: [docker]}
+   - {role: kubelet, tags: [kubelet]}
+   - {role: helm, tags: [helm]}
+   - {role: k8s_master, tags: [k8s_master]}
+  become: yes
+- hosts: k8s_worker
+  roles:
+   - {role: iscsi, tags: [iscsi]}
+   - {role: docker, tags: [docker]}
+   - {role: kubelet, tags: [kubelet]}
+  become: yes
+- hosts: database
+  roles:
+   - {role: db, tags: [db]}
+  become: yes

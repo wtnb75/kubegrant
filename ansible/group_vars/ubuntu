@@ -1,0 +1,11 @@
+base_packages:
+  - dstat
+  - apt-transport-https
+  - curl
+  - ca-certificates
+  - software-properties-common
+  - sysstat
+  - jq
+docker_ce_version: "5:18.09.9~3-0~ubuntu-bionic"
+internal_ip: "{{ansible_enp0s8.ipv4.address}}"
+kubelet_version: 1.14.6-00

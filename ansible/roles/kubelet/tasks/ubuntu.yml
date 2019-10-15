@@ -1,0 +1,13 @@
+- name: config
+  template: src=kubelet.conf dest=/etc/default/kubelet
+- name: apt-key
+  apt_key: url=https://packages.cloud.google.com/apt/doc/apt-key.gpg
+- name: distribution
+  template: src=kubernetes.list dest=/etc/apt/sources.list.d/kubernetes.list owner=root group=root
+- name: install kubelet
+  apt:
+    update_cache: yes
+    name:
+     - kubelet={{ kubelet_version|default("1.16.0-00") }}
+     - kubeadm={{ kubelet_version|default("1.16.0-00") }}
+     - kubectl={{ kubelet_version|default("1.16.0-00") }}

@@ -1,0 +1,4 @@
+- name: swapoff
+  command: swapoff -a
+- name: remove swap from fstab
+  lineinfile: state=absent regexp=swap path=/etc/fstab

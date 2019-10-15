@@ -1,0 +1,2 @@
+- name: install common package
+  yum: update_cache=yes name="{{ base_packages }}"

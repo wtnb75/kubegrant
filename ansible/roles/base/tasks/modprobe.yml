@@ -1,0 +1,5 @@
+- name: modprobe
+  modprobe: name={{ item }}
+  with_items:
+   - overlay
+   - br_netfilter

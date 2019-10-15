@@ -1,0 +1,15 @@
+- name: config
+  template: src=kubelet.conf dest=/etc/sysconfig/kubelet
+- name: repo
+  template: src=k8s.repo dest=/etc/yum.repos.d/k8s.repo owner=root group=root mode=0644
+- name: selinux
+  selinux: state=permissive policy=targeted
+- name: install kubelet
+  yum:
+    disable_excludes: kubernetes
+    name:
+     - kubelet-{{ kubelet_version|default("1.16.0-0") }}
+     - kubeadm-{{ kubelet_version|default("1.16.0-0") }}
+     - kubectl-{{ kubelet_version|default("1.16.0-0") }}
+- name: service
+  service: name=kubelet state=started enabled=yes

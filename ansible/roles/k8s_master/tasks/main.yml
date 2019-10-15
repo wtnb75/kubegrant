@@ -1,0 +1,32 @@
+- name: initialize
+  shell: kubeadm init --apiserver-advertise-address={{ internal_ip }} --pod-network-cidr=172.16.0.0/16 > /tmp/kubeadm-init.log 2>&1
+  args:
+    creates: /root/.kube
+- name: mkdir(root)
+  file: path=/root/.kube state=directory owner=root group=root mode=0755
+- name: copy config(root)
+  copy: src=/etc/kubernetes/admin.conf dest=/root/.kube/config owner=root group=root mode=0644 remote_src=yes
+- name: mkdir(user)
+  file: path=/home/{{ ansible_ssh_user }}/.kube state=directory owner={{ ansible_ssh_user }} group={{ ansible_ssh_user }} mode=0755
+- name: copy config(user)
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: /home/{{ ansible_ssh_user }}/.kube/config
+    owner: "{{ ansible_ssh_user }}"
+    group: "{{ ansible_ssh_user }}"
+    mode: 0644
+    remote_src: yes
+- name: calicoctl
+  get_url:
+    url: https://github.com/projectcalico/calicoctl/releases/download/v3.9.0/calicoctl-linux-amd64
+    dest: /usr/local/bin/calicoctl
+    owner: root
+    group: root
+    mode: 0755
+- name: initialize calico
+  shell: |
+   while true; do
+     kubectl get node && break
+     sleep 5
+   done
+   kubectl apply -f /vagrant/calico.yaml

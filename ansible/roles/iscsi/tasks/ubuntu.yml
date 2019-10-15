@@ -1,0 +1,5 @@
+- name: enable service
+  service: name={{ item }} state=started enabled=yes
+  with_items:
+   - iscsid
+   - open-iscsi

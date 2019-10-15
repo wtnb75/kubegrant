@@ -1,0 +1,11 @@
+- name: install package
+  yum:
+    name:
+      - targetcli
+      - iscsi-initiator-utils
+- name: service
+  service: name={{ item }} state=started enabled=yes
+  with_items:
+    - iscsi
+    - iscsid
+    - iscsiuio

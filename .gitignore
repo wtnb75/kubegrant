@@ -1,0 +1,9 @@
+.vagrant/
+*.orig
+*.bak
+*~
+*.swp
+*.log
+ssh_config
+ansible/site.retry
+.envrc

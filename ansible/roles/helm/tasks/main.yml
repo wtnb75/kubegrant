@@ -1,0 +1,14 @@
+- name: download
+  unarchive:
+    src: https://get.helm.sh/helm-{{ helm_version|default("v2.14.3") }}-linux-amd64.tar.gz
+    remote_src: yes
+    dest: /tmp
+    creates: /tmp/linux-amd64
+- name: tiller
+  command: mv /tmp/linux-amd64/tiller /usr/local/bin/
+  args:
+    creates: /usr/local/bin/tiller
+- name: helm
+  command: mv /tmp/linux-amd64/helm /usr/local/bin/
+  args:
+    creates: /usr/local/bin/helm

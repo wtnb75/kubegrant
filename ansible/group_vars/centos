@@ -1,0 +1,7 @@
+base_packages:
+  - dstat
+  - curl
+  - sysstat
+docker_ce_version: 19.03.2
+internal_ip: "{{ansible_eth1.ipv4.address}}"
+kubelet_version: 1.14.6-0

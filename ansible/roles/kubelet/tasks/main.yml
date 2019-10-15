@@ -1,0 +1,6 @@
+- include: ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
+- include: swapoff.yml
+  when: ansible_distribution == "CentOS"
+- include: centos.yml
+  when: ansible_distribution == "CentOS"
