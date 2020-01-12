@@ -62,3 +62,7 @@ boot pod
 - kubectl create -f csi-s3/99-pod.yaml
 - kubectl exec -ti csi-s3-test-nginx bash
   - mount | grep fuse
+
+# Links
+
+- [nomadgrant](https://github.com/wtnb75/nomadgrant): you need hashicopr nomad?
