@@ -65,4 +65,4 @@ boot pod
 
 # Links
 
-- [nomadgrant](https://github.com/wtnb75/nomadgrant): you need hashicopr nomad?
+- [nomadgrant](https://github.com/wtnb75/nomadgrant): you need hashicorp nomad?
